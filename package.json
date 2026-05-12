@@ -1,0 +1,21 @@
+{
+  "name": "pet-care",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/next-with-wasm.mjs dev",
+    "build": "node scripts/next-with-wasm.mjs build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "^15.3.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@next/swc-wasm-nodejs": "^15.5.18",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "^15.3.2"
+  }
+}

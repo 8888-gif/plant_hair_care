@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>青禾植染 | 植物染发养护空间</title>
+  <style>
+    :root {
+      --ink: #243028;
+      --muted: #667066;
+      --paper: #fbfaf4;
+      --cream: #fffdf7;
+      --sage: #dfe8d3;
+      --leaf: #2f6846;
+      --leaf-dark: #1f4b34;
+      --tea: #8a5a3b;
+      --clay: #b56c43;
+      --gold: #d7a842;
+      --line: rgba(36, 48, 40, .14);
+      --shadow: 0 24px 70px rgba(29, 55, 38, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 16px clamp(20px, 5vw, 72px);
+      background: rgba(251, 250, 244, .88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 28%, #fff3bd 0 13%, transparent 14%),
+        conic-gradient(from 145deg, #224b33, #79a45c, #c88a42, #224b33);
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,.58);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2.5vw, 34px);
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    .nav-cta {
+      color: #fff;
+      background: var(--leaf);
+      box-shadow: 0 12px 28px rgba(47, 104, 70, .2);
+    }
+
+    .hero {
+      min-height: calc(100vh - 73px);
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(360px, 1.08fr);
+      align-items: center;
+      gap: clamp(34px, 5vw, 78px);
+      padding: clamp(38px, 6vw, 82px) clamp(20px, 5vw, 72px) 52px;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(215,168,66,.18), transparent 28%),
+        linear-gradient(120deg, #fbfaf4 0 48%, #eaf0df 48% 100%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--leaf-dark);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .14em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 710px;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin-top: 22px;
+      color: #536052;
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .primary {
+      color: #fff;
+      background: var(--leaf-dark);
+      box-shadow: 0 18px 42px rgba(31, 75, 52, .24);
+    }
+
+    .secondary {
+      color: var(--leaf-dark);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(47,104,70,.22);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 650px;
+      margin-top: 42px;
+    }
+
+    .stat {
+      padding: 18px;
+      background: rgba(255,255,255,.64);
+      border-left: 3px solid var(--gold);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-media {
+      position: relative;
+      min-height: 620px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #dce5d0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-badge {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      width: min(310px, calc(100% - 48px));
+      padding: 18px 20px;
+      background: rgba(255,253,247,.88);
+      border: 1px solid rgba(255,255,255,.64);
+      border-radius: 8px;
+      box-shadow: 0 18px 44px rgba(31, 53, 35, .16);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-badge strong {
+      display: block;
+      color: var(--leaf-dark);
+      font-size: 18px;
+    }
+
+    .hero-badge span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 86px clamp(20px, 5vw, 72px);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 520px;
+      color: var(--muted);
+    }
+
+    .services {
+      background: var(--cream);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 280px;
+      padding: 28px;
+      background: #fffefa;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 12px 34px rgba(37, 50, 41, .07);
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--leaf-dark);
+      background: #e8efd8;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .card h3 {
+      margin-top: 24px;
+      font-size: 24px;
+    }
+
+    .card p {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    .price {
+      margin-top: 24px;
+      color: var(--clay);
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .colors {
+      background:
+        linear-gradient(90deg, rgba(47,104,70,.08), transparent 42%),
+        #f4f1e6;
+    }
+
+    .color-layout {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .color-copy p {
+      margin-top: 18px;
+      color: var(--muted);
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .swatch {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      min-height: 112px;
+      overflow: hidden;
+      background: rgba(255,255,255,.68);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .swatch-color { min-height: 100%; }
+    .c1 { background: linear-gradient(135deg, #261b16, #7d4b32); }
+    .c2 { background: linear-gradient(135deg, #3c251b, #b56f48); }
+    .c3 { background: linear-gradient(135deg, #1e1a17, #4a392e); }
+    .c4 { background: linear-gradient(135deg, #65402a, #d49a62); }
+
+    .swatch-info { padding: 18px; }
+    .swatch-info strong { display: block; font-size: 18px; }
+    .swatch-info span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+    }
+
+    .step {
+      padding: 28px;
+      background: rgba(255,253,247,.78);
+    }
+
+    .step b {
+      color: var(--gold);
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .step h3 {
+      margin-top: 24px;
+      font-size: 20px;
+    }
+
+    .step p {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .booking {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 34px;
+      align-items: stretch;
+      color: #fff;
+      background: #1f3f2b;
+    }
+
+    .booking p {
+      margin-top: 18px;
+      color: rgba(255,255,255,.76);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .contact-item {
+      padding: 18px 0;
+      border-top: 1px solid rgba(255,255,255,.18);
+    }
+
+    .contact-item strong { display: block; }
+    .contact-item span { color: rgba(255,255,255,.68); }
+
+    .booking-side {
+      display: grid;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .store-map {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 20px 46px rgba(11,28,17,.2);
+    }
+
+    .store-map img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 330px;
+      object-fit: cover;
+    }
+
+    .map-caption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      padding: 12px 14px;
+      border: 1px solid rgba(31,63,43,.14);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(255,253,246,.88);
+      backdrop-filter: blur(12px);
+    }
+
+    .map-caption strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .map-caption span {
+      display: block;
+      margin-top: 3px;
+      color: #677367;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      padding: clamp(22px, 4vw, 36px);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-height: 50px;
+      padding: 13px 15px;
+      color: #fff;
+      font: inherit;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 8px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,.58);
+    }
+
+    select { color-scheme: dark; }
+
+    button {
+      min-height: 52px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--leaf-dark);
+      background: #f5d879;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 28px clamp(20px, 5vw, 72px);
+      color: var(--muted);
+      background: #f5f1e4;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .header { position: static; }
+      nav a:not(.nav-cta) { display: none; }
+      .hero, .color-layout, .booking { grid-template-columns: 1fr; }
+      .hero-media { order: -1; min-height: 480px; }
+      .hero-media img { min-height: 480px; }
+      .cards, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head { display: block; }
+      .section-head p { margin-top: 14px; }
+    }
+
+    @media (max-width: 620px) {
+      .header { padding: 14px 20px; }
+      .brand { font-size: 15px; }
+      .nav-cta { min-height: 40px; padding: 0 14px; font-size: 13px; }
+      .hero, section { padding-left: 20px; padding-right: 20px; }
+      .hero { padding-top: 28px; }
+      .hero-actions { align-items: stretch; }
+      .pill { width: 100%; }
+      .hero-stats, .cards, .swatches, .steps { grid-template-columns: 1fr; }
+      .hero-media { min-height: 390px; }
+      .hero-media img { min-height: 390px; }
+      .hero-badge { left: 16px; bottom: 16px; width: calc(100% - 32px); }
+      .store-map, .store-map img { min-height: 260px; }
+      footer { display: block; }
+      footer span { display: block; }
+      footer span + span { margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#">
+      <span class="logo" aria-hidden="true"></span>
+      青禾植染
+    </a>
+    <nav aria-label="主导航">
+      <a href="#services">服务</a>
+      <a href="#colors">色卡</a>
+      <a href="#process">流程</a>
+      <a class="nav-cta pill" href="#booking">预约体验</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">PLANT HAIR COLOR STUDIO</span>
+        <h1>植物染发，让发色自然，也让头皮松一口气。</h1>
+        <p class="hero-copy">青禾植染专注草本染发、遮白染与头皮养护。用更温和的植萃配方、发质评估和一对一调色，做出日常耐看的黑茶、栗棕与深木棕。</p>
+        <div class="hero-actions">
+          <a class="pill primary" href="#booking">立即预约</a>
+          <a class="pill secondary" href="#services">查看项目</a>
+        </div>
+        <div class="hero-stats" aria-label="门店亮点">
+          <div class="stat"><strong>0氨</strong><span>低刺激植物染护方案</span></div>
+          <div class="stat"><strong>1v1</strong><span>发质与头皮评估</span></div>
+          <div class="stat"><strong>3h</strong><span>完整植染养护体验</span></div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <img src="assets/plant-hair-salon-hero.png" alt="植物染发店内自然棕发护理场景">
+        <div class="hero-badge">
+          <strong>今日推荐：栗棕养护染</strong>
+          <span>自然遮白，温柔提气色，适合通勤与日常造型。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="section-head">
+        <h2>门店项目</h2>
+        <p>每个项目都包含染前咨询、发丝测试和染后护理建议。我们更在意颜色是否适合你，而不是只追求一眼很浓的效果。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">遮白首选</span>
+          <h3>草本遮白染</h3>
+          <p>适合白发比例明显、想要自然深棕或黑茶色的顾客。颜色均匀，不厚重，不突兀。</p>
+          <div class="price">¥298 起</div>
+        </article>
+        <article class="card">
+          <span class="tag">气色提升</span>
+          <h3>植物栗棕染</h3>
+          <p>为暗沉发色加入柔和棕调，保留亚洲发质的自然感，适合办公室与日常生活。</p>
+          <div class="price">¥368 起</div>
+        </article>
+        <article class="card">
+          <span class="tag">染后养护</span>
+          <h3>头皮净养护理</h3>
+          <p>染前舒缓与染后保湿组合，减少干涩紧绷感，让发根更清爽，发尾更顺滑。</p>
+          <div class="price">¥168 起</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="colors" id="colors">
+      <div class="color-layout">
+        <div class="color-copy">
+          <span class="eyebrow">HERBAL COLOR</span>
+          <h2>植物染发的好看，通常很安静。</h2>
+          <p>我们主打耐看的自然色系。根据原生发色、白发比例、肤色冷暖和日常穿搭，选择不会突兀的颜色方向。</p>
+        </div>
+        <div class="swatches" aria-label="植物染发色卡">
+          <div class="swatch">
+            <div class="swatch-color c1"></div>
+            <div class="swatch-info"><strong>黑茶棕</strong><span>沉稳遮白，干净自然。</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color c2"></div>
+            <div class="swatch-info"><strong>栗子棕</strong><span>柔和提亮，显气色。</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color c3"></div>
+            <div class="swatch-info"><strong>深木棕</strong><span>低调耐看，适合通勤。</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color c4"></div>
+            <div class="swatch-info"><strong>暖茶棕</strong><span>轻盈温暖，减少沉闷。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="section-head">
+        <h2>一次舒服的植染流程</h2>
+        <p>颜色做得自然，往往靠的是染前判断、上色节奏和染后养护。慢一点，结果更稳。</p>
+      </div>
+      <div class="steps">
+        <div class="step"><b>01</b><h3>头皮评估</h3><p>确认敏感情况、白发比例和过往染烫记录。</p></div>
+        <div class="step"><b>02</b><h3>配方调色</h3><p>根据目标色与原发色，调整植物染膏比例。</p></div>
+        <div class="step"><b>03</b><h3>分区上色</h3><p>细分发根、发中、发尾，让色度更均匀。</p></div>
+        <div class="step"><b>04</b><h3>染后养护</h3><p>清洁、舒缓、保湿，并提供居家护理建议。</p></div>
+      </div>
+    </section>
+
+    <section class="booking" id="booking">
+      <div>
+        <span class="eyebrow">BOOKING</span>
+        <h2>预约一次植物染发体验</h2>
+        <p>留下联系方式后，门店会与你确认发长、白发比例、期望色和可预约时间。首次到店建议预留 2.5 到 3.5 小时。</p>
+        <div class="contact-list">
+          <div class="contact-item"><strong>门店地址</strong><span>上海市普陀区宜川路街道陕西北路 1620 号</span></div>
+          <div class="contact-item"><strong>附近地标</strong><span>靠近陕西北路、昌平路，地图红色标记位置</span></div>
+          <div class="contact-item"><strong>营业时间</strong><span>周一至周日 10:00 - 21:00</span></div>
+          <div class="contact-item"><strong>预约电话</strong><span>021-6688-9026</span></div>
+        </div>
+      </div>
+      <div class="booking-side">
+        <div class="store-map" aria-label="陕西北路 1620 号门店位置地图">
+          <img src="assets/qinghe-store-map-ai.png" alt="青禾植染门店地图，标注上海市普陀区宜川路街道陕西北路 1620 号">
+          <div class="map-caption">
+            <strong>上海市普陀区宜川路街道陕西北路 1620 号</strong>
+            <span>AI 生成清新染发风格地图，红色标记为门店位置。</span>
+          </div>
+        </div>
+        <form>
+          <input type="text" name="name" placeholder="你的称呼" aria-label="你的称呼">
+          <input type="tel" name="phone" placeholder="手机号" aria-label="手机号">
+          <select name="service" aria-label="想预约的项目">
+            <option>草本遮白染</option>
+            <option>植物栗棕染</option>
+            <option>头皮净养护理</option>
+            <option>到店后再咨询</option>
+          </select>
+          <textarea name="message" placeholder="简单说说你的发长、白发比例或想要的颜色" aria-label="留言"></textarea>
+          <button type="submit">提交预约信息</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 青禾植染 Plant Hair Color Studio</span>
+    <span>温和染护 · 草本色彩 · 头皮养护</span>
+  </footer>
+</body>
+</html>
